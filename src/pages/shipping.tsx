@@ -3,7 +3,7 @@ import { BiArrowBack } from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { CartReducerInitialState } from "../types/reducer-types";
-import axios from "axios";
+import axios from 'axios'
 import { server } from "../redux/store";
 import toast from "react-hot-toast";
 import { saveShippingInfo } from "../redux/reducer/cartReducer";
@@ -11,7 +11,10 @@ import { saveShippingInfo } from "../redux/reducer/cartReducer";
 
 const Shipping = () => {
 
+
     const { cartItems, total } = useSelector((state: { cartReducer: CartReducerInitialState }) => state.cartReducer);
+
+
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -45,6 +48,7 @@ const Shipping = () => {
                     },
                 }
             );
+
 
             navigate("/pay", {
                 state: data.clientSecret,

@@ -48,7 +48,7 @@ export type SearchProductsRequest = {
 
 export type ProductResponse = {
     success: boolean;
-    stats: Product;
+    product: Product;
 }
 
 export type StatsResponse = {
