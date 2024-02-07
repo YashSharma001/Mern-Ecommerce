@@ -20,7 +20,7 @@ const Productmanagement = () => {
   const { data, isLoading } = useProductDetailsQuery(params.id!)
 
 
-  const { price, photo, name, stock, category } = data?.product || {
+  const { price, photo, name, stock, category } = data?.stats || {
     photo: "",
     category: "",
     name: "",
@@ -70,7 +70,7 @@ const Productmanagement = () => {
     const res = await updateProduct({
       formData,
       userId: user?._id!,
-      productId: data?.product._id!,
+      productId: data?.stats._id!,
     });
 
     responseToast(res, navigate, "/admin/product");
@@ -80,7 +80,7 @@ const Productmanagement = () => {
 
     const res = await deleteProduct({
       userId: user?._id!,
-      productId: data?.product._id!,
+      productId: data?.stats._id!,
     });
 
     responseToast(res, navigate, "/admin/product");
@@ -88,10 +88,10 @@ const Productmanagement = () => {
 
   useEffect(() => {
     if (data) {
-      setNameUpdate(data.product.name);
-      setPriceUpdate(data.product.price);
-      setStockUpdate(data.product.stock);
-      setCategoryUpdate(data.product.category);
+      setNameUpdate(data.stats.name);
+      setPriceUpdate(data.stats.price);
+      setStockUpdate(data.stats.stock);
+      setCategoryUpdate(data.stats.category);
     }
   }, [data]);
 
@@ -104,7 +104,7 @@ const Productmanagement = () => {
             (
               <>
                 <section>
-                  <strong>ID - {data?.product._id}</strong>
+                  <strong>ID - {data?.stats._id}</strong>
                   <img src={`${server}/${photo}`} alt="Product" />
                   <p>{name}</p>
                   {stock > 0 ? (
